@@ -64,7 +64,7 @@
   ""
   (if (file-name-absolute-p counsel-doxygen-snippets-root)
       counsel-doxygen-snippets-root
-    (concat (counsel-doxygen-snippet--project-root) counsel-doxygen-snippets-root)))
+    (concat (counsel-doxygen-snippets--project-root) counsel-doxygen-snippets-root)))
 
 (defun counsel-doxygen-snippets--path (file)
   ""
@@ -78,7 +78,7 @@
   (when (string-match "\\(.*\\):[\t\s]+//![\t\s]?\\[\\(.*\\)\\]" str)
     (let ((file (match-string 1 str))
           (name (match-string 2 str)))
-      (insert (format "%s %s %s" counsel-doxygen-snippets-prefix (counsel-doxygen-snippet--path file) name)))))
+      (insert (format "%s %s %s" counsel-doxygen-snippets-prefix (counsel-doxygen-snippets--path file) name)))))
 
 (defun counsel-doxygen-snippets--function (str)
   "Search for STR."
@@ -88,7 +88,7 @@
 (defun counsel-doxygen-snippets (&optional initial-input)
   ""
   (interactive)
-  (let ((default-directory (or (counsel-doxygen-snippet--root) default-directory)))
+  (let ((default-directory (or (counsel-doxygen-snippets--root) default-directory)))
     (ivy-read "name: "
               #'counsel-doxygen-snippets--function
               :require-match t
