@@ -42,10 +42,13 @@
 
 (defcustom counsel-doxygen-snippets-prefix " @snippet"
   "Prefix to be inserted in front of the snippet reference."
+  :safe #'stringp
   :type 'string)
 
-(defvar counsel-doxygen-snippets-root ""
-  "Root directory to search for snippets in. Intended to be set in your .dir-locals.el files.")
+(defcustom counsel-doxygen-snippets-root ""
+  "Root directory to search for snippets in. Intended to be set in your .dir-locals.el files."
+  :type 'string
+  :safe (lambda (v) (and (stringp v) (file-directory-p v))))
 
 (defvar counsel-doxygen-snippets--history nil)
 
